@@ -1,2 +1,5 @@
 05 store enhancers
-	-> puedes agregar funcionalidades intermedias a un store cada vez que se haga un dispatch al estado
+-> puedes agregar funcionalidades intermedias a un store cada vez que se haga un dispatch al estado
+
+04 Middlewares
+|> Puedes agregar funcionalidades a los store cada vez que se interactua con él
