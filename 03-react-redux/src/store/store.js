@@ -1,4 +1,5 @@
 import { applyMiddleware, compose, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import axios from 'axios';
 import PostsReducer from '../reducers/PostsReducer';
 import { confirmedGetPostsAction, GET_POSTS } from './actions/Post.actions';
@@ -16,25 +17,15 @@ const loggerMiddleware = store => next => action => {
 // 69 gets the data from this place
 const fetchDataMiddleware = store => next => action => {
 	if (action.type === GET_POSTS) {
-		// Ajax call
-		axios
-			.get(`https://react-course-b798e-default-rtdb.firebaseio.com/posts.json`)
-			.then(response => {
-				console.log(response.data);
-				let posts = [];
-				for (const key in response.data) {
-					posts.push({ ...response.data[key], id: key });
-				}
-				store.dispatch(confirmedGetPostsAction(posts));
-			})
-			.catch(error => console.log(error));
 	}
 	return next(action);
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middleWare = applyMiddleware(loggerMiddleware, fetchDataMiddleware);
+// 70 Con thunk agregas la posibilidad de ejecutar funciones dentro de las acciones, aunque tambien puedes usar
+// el retorno de objetos tradicionalmente usado
+const middleWare = applyMiddleware(thunk);
 
 export const store = createStore(PostsReducer, composeEnhancers(middleWare));
 

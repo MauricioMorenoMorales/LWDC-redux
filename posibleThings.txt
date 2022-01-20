@@ -3,3 +3,4 @@
 
 04 Middlewares
 |> Puedes agregar funcionalidades a los store cada vez que se interactua con él
+|> puedes hacer peticiones agregando un middleware que cuándo se ejectute cierto codigo verifice el tipo de la accion
