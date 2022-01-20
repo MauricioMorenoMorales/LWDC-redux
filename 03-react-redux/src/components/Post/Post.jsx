@@ -1,12 +1,21 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createPostAction } from '../../store/actions/Post.actions';
+import {
+	createPostAction,
+	getPostsAction,
+} from '../../store/actions/Post.actions';
 
 class Posts extends Component {
 	onCreatePost() {
 		this.props.createPostAction();
 	}
+
+	//69 Get the posts from the database
+	componentDidMount() {
+		this.props.getPostsAction();
+	}
+
 	render() {
 		const posts = [];
 		for (const post of this.props.posts) {
@@ -40,6 +49,6 @@ const mapStateToProps = state => {
 // 	};
 // };
 const mapDispatchToProps = dispatch =>
-	bindActionCreators({ createPostAction }, dispatch);
+	bindActionCreators({ createPostAction, getPostsAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

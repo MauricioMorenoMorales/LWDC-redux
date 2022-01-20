@@ -1,4 +1,7 @@
-import { CREATE_POST_ACTION } from '../store/actions/Post.actions';
+import {
+	CONFIRMED_GET_POSTS,
+	CREATE_POST_ACTION,
+} from '../store/actions/Post.actions';
 
 const initialState = {
 	posts: [
@@ -21,6 +24,13 @@ export default function PostsReducer(state = initialState, actions) {
 		return {
 			...state,
 			posts,
+		};
+	}
+	// 69 Gets the info to the database
+	if (actions.type === CONFIRMED_GET_POSTS) {
+		return {
+			...state,
+			posts: actions.payload,
 		};
 	}
 	return state;
