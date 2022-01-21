@@ -1,14 +1,32 @@
-import { getPosts } from '../../services/posts.service';
+import { createPost, getPosts } from '../../services/posts.service';
 
 export const CREATE_POST_ACTION = '[Post Action] Create Post';
 export const GET_POSTS = '[Post Action] Get Posts';
 export const CONFIRMED_GET_POSTS = '[Post Action] Confirmed Get Posts';
 
-export function createPostAction() {
-	return {
-		type: CREATE_POST_ACTION,
-	};
-}
+//? you can write this better
+// export function createPostAction(postData) {
+// 	return dispatch => {
+// 		createPost(postData)
+// 			.then(response => console.log(response.data))
+// 			.catch(error =>
+// 				console.log(
+// 					`Error creating the new post but the action works ${error}`,
+// 				),
+// 			);
+// 	};
+// }
+
+// create the post in the CreatePost.jsx
+export const createPostAction = (postData, history) => dispatch =>
+	createPost(postData)
+		.then(response => {
+			console.log(response);
+			// here you can change the app url
+		})
+		.catch(error =>
+			console.log(`Error creating the new post but the action works ${error}`),
+		);
 
 // 69 Get the posts from the database
 // Cuándo uses thunk puedes agregar funciones dentro de las acciones y ejecutar otros dispatchs dentro de la accion
