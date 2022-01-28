@@ -1,6 +1,8 @@
 import { createPost, getPosts } from '../../services/posts.service';
 
 export const CREATE_POST_ACTION = '[Post Action] Create Post';
+export const CONFIRMED_CREATE_POST_ACTION =
+	'[Post Action] Confirmed Create Post';
 export const GET_POSTS = '[Post Action] Get Posts';
 export const CONFIRMED_GET_POSTS = '[Post Action] Confirmed Get Posts';
 
@@ -18,10 +20,12 @@ export const CONFIRMED_GET_POSTS = '[Post Action] Confirmed Get Posts';
 // }
 
 // create the post in the CreatePost.jsx
+// 74 la funcion getPostsAction ya no es llamada cada vez que se regresa a la página de posts
 export const createPostAction = (postData, history) => dispatch =>
 	createPost(postData)
 		.then(response => {
-			console.log(response);
+			const singlePost = { ...postData, id: response.data.name };
+			dispatch(confirmedCreatePostAction(singlePost));
 			// here you can change the app url
 		})
 		.catch(error =>
@@ -43,6 +47,14 @@ export function getPostsAction() {
 				dispatch(confirmedGetPostsAction(posts));
 			})
 			.catch(error => console.log(`Exercuting getPostsAction ${error}`));
+	};
+}
+
+// 74 agrega las informacion obtenida del fetch
+export function confirmedCreatePostAction(singlePost) {
+	return {
+		type: CONFIRMED_CREATE_POST_ACTION,
+		payload: singlePost,
 	};
 }
 

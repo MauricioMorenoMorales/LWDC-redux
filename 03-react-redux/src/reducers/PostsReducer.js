@@ -1,4 +1,5 @@
 import {
+	CONFIRMED_CREATE_POST_ACTION,
 	CONFIRMED_GET_POSTS,
 	CREATE_POST_ACTION,
 } from '../store/actions/Post.actions';
@@ -31,6 +32,15 @@ export default function PostsReducer(state = initialState, actions) {
 		return {
 			...state,
 			posts: actions.payload,
+		};
+	}
+	// 73 agrega las peticiones al store
+	if (actions.type === CONFIRMED_CREATE_POST_ACTION) {
+		const posts = [...state.posts];
+		posts.push(actions.payload);
+		return {
+			...state,
+			posts,
 		};
 	}
 	return state;

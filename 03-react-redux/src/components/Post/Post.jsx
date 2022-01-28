@@ -13,7 +13,10 @@ class Posts extends Component {
 
 	//69 Get the posts from the database
 	componentDidMount() {
-		this.props.getPostsAction();
+		// 74 solo hace peticones una vez despues usa la informacion local
+		if (this.props.posts && !this.props.posts.length) {
+			this.props.getPostsAction();
+		}
 	}
 
 	render() {

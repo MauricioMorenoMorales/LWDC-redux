@@ -4,3 +4,7 @@
 04 Middlewares
 |> Puedes agregar funcionalidades a los store cada vez que se interactua con él
 |> puedes hacer peticiones agregando un middleware que cuándo se ejectute cierto codigo verifice el tipo de la accion
+
+
+03 cuando creas algo en un crud en vez de enviar la solicitud y pedir todo de nuevo puedes agregar el elemento creado directo al store para no hacer más peticiones <73>
+|> 
