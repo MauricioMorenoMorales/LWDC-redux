@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { incrementCount } from '../store/actions/PostsActions';
+import { getActivePost } from '../store/selectors/PostSelectors';
 
 function PostsList(props) {
 	return (
@@ -16,22 +17,11 @@ function PostsList(props) {
 	);
 }
 
-// Filtra los tipos de posts
-const getActivePosts = (posts, filter) => {
-	switch (filter) {
-		case 'SHOW_ACTIVE':
-			return posts.filter(post => post.isActive);
-		case 'SHOW_INACTIVE':
-			return posts.filter(post => !post.isActive);
-		default:
-			return posts;
-	}
-};
-
 //! de esta forma cuando cambias el estado count tambien el estado posts se renderizara
 const mapStateToProps = state => {
 	return {
-		posts: getActivePosts(state.posts, state.filter),
+		// simplemente crea el selector en otro archivo y ponlo por cada estado
+		posts: getActivePost(state),
 		count: state.count,
 	};
 };
