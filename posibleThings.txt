@@ -8,3 +8,7 @@
 
 03 cuando creas algo en un crud en vez de enviar la solicitud y pedir todo de nuevo puedes agregar el elemento creado directo al store para no hacer más peticiones <73>
 |> 
+
+06
+|> Cuando tienes 1 estado y actualizas el segundo todos se actualizan, para evitar esto usa la libreria reselect
+|> para esto puedes crear otro archivo con selectors que son funciones que reciben el estado y previenen que otros elementos s renderizen
